@@ -33,6 +33,9 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'todos',
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -123,7 +126,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-REST_FRAMEWORK={"DEFULT_PERMISSION_CLASSES":["rest_framework.permissions.Allowany",]}
+REST_FRAMEWORK={
+    "DEFAULT_PERMISSION_CLASSES":["rest_framework.permissions.IsAuthenticated",],
+    "DEFAULT_AUTHENTICATION_CLASSES":[
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ],
+}
+
 
 CORS_ORIGIN_WHITELIST=(
     "http://192.168.1.4:3000",
